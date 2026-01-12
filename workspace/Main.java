@@ -30,20 +30,21 @@ public class Main
   public void loadCountries()
   {
     // Open the data file. Please note that the file structure we're working with requires the full file path as shown here unlike what you saw in runestone where the file name was sufficient.
-    File file = new File("/workspaces/Countries/workspace/countries-data.csv");
+    File myFile = new File("/workspaces/Countries/workspace/countries-data.csv");
     
-    //create a scanner and a loop to read from the file until you've read everything.
-    Scanner scan = new Scanner(file);
-    String line = Country[index];
-    String[] data = line.split(",");
+    //create a scanner and a loop to read from the file until you've read everything. MAGUS ADD FILENAME SOMEHOW OR SMTH
+    Scanner scan = new Scanner("/workspaces/Countries/workspace/countries-data.csv");
+    
     
     while (scan.hasNext())
         {
-            countryArray[index] = scan.nextLine();
-            index++;
+           String line = scan.nextLine();
+            String[] data = line.split(","); 
             Country country = new Country(data[1],data[2],data[3],data[4]);
             countryArray[index]=country;
+            index++;
         }
+        scan.close();
     // inside the loop you'll need to read in a line from the file and use "split" to break up the data into destinct parts.
     // create a new Country using your constructor with 4 arguments (each of the arguments is a different part of the line you've read in)
     // inside the loop, set countryArray[i] to the created Country object
@@ -56,9 +57,9 @@ public class Main
   */
   public void showCountry() {
     // Get the country at index from countryArray
-    country=countryArray[index];
+    String currentCountry=countryArray[index];
     // Use its get method to get the its image file name and save it into imagefile variable below instead of worldmap.jpg.
-    String imagefile = country.getImageFile;
+    String imagefile = getImageFile();
     // Use the following code to create an new Image Icon and put it into the GUI
     img = new ImageIcon("/workspaces/Countries/workspace/"+imagefile);
     imageLabel.setIcon(img);
