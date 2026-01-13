@@ -44,7 +44,7 @@ public class Main
             countryArray[index]=country;
             index++;
         }
-        scan.close();
+       scan.close(); 
     // inside the loop you'll need to read in a line from the file and use "split" to break up the data into destinct parts.
     // create a new Country using your constructor with 4 arguments (each of the arguments is a different part of the line you've read in)
     // inside the loop, set countryArray[i] to the created Country object
@@ -57,11 +57,11 @@ public class Main
   */
   public void showCountry() {
     // Get the country at index from countryArray
-    String currentCountry=countryArray[index];
+    Country cc=countryArray[index];
     // Use its get method to get the its image file name and save it into imagefile variable below instead of worldmap.jpg.
-    String imagefile = getImageFile();
+    String image = cc.getImageFile();
     // Use the following code to create an new Image Icon and put it into the GUI
-    img = new ImageIcon("/workspaces/Countries/workspace/"+imagefile);
+    img = new ImageIcon("/workspaces/Countries/workspace/"+image);
     imageLabel.setIcon(img);
   }
   
@@ -72,8 +72,8 @@ public class Main
       index=0;
       else
         index++;
-  outputlabel.setText();
-    
+  outputLabel.setText("");
+showCountry();
       
     
   }
@@ -81,17 +81,25 @@ public class Main
   /* reviewButton should get the country at index from the countryArray, call its toString() method and save the result, print it out with System.out.println and as an argument to outputLabel.setText( text to print out ); */
   public void reviewButtonClick()
   {
-     
+    Country cc=countryArray[index];
+    String info=cc.toString();
+    System.out.println(info);
   }
 
   /* quizButton should clear the outputLabel (outputLabel.setText to empty string), get the country at index from countryArray, print out a question about it like What country is this? and/or What's this country's capital?. Get the user's answer using scan.nextLine() and check if it is equal to the country's data using its get methods and print out correct or incorrect.
-  */
+  /* */
+   Scanner scan = new Scanner("");
   public void quizButtonClick()
   {
-    
-    
-    
-    
+    outputLabel.setText("");
+    Country cc=countryArray[index];
+    System.out.println("What country is this?");
+    String ccName=cc.getName();
+    String guess = scan.nextLine();
+    if (ccName.equals(guess)){
+      System.out.println("Correct!");
+    }
+    scan.close();
   }
 
 
