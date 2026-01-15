@@ -24,27 +24,32 @@ public class Main
     Main gui = new Main();
     gui.loadCountries();
     gui.showCountry();
+   
   }
 
   /* loadCountries() reads in the data from the countries-data.csv file and fills in the countryArray with data. You need to add the loop that reads in the country data into the array. */
   public void loadCountries()
   {
+    try{
     // Open the data file. Please note that the file structure we're working with requires the full file path as shown here unlike what you saw in runestone where the file name was sufficient.
     File myFile = new File("/workspaces/Countries/workspace/countries-data.csv");
     
     //create a scanner and a loop to read from the file until you've read everything. MAGUS ADD FILENAME SOMEHOW OR SMTH
-    Scanner scan = new Scanner("/workspaces/Countries/workspace/countries-data.csv");
+    Scanner scan = new Scanner(myFile);
     
     
     while (scan.hasNext())
         {
            String line = scan.nextLine();
             String[] data = line.split(","); 
-            Country country = new Country(data[1],data[2],data[3],data[4]);
-            countryArray[index]=country;
+            Country cc = new Country(data[1],data[2],data[3],data[4]);
+            countryArray[index]=cc;
             index++;
         }
        scan.close(); 
+    }catch(IOException e){
+      System.out.println("error");
+    }
     // inside the loop you'll need to read in a line from the file and use "split" to break up the data into destinct parts.
     // create a new Country using your constructor with 4 arguments (each of the arguments is a different part of the line you've read in)
     // inside the loop, set countryArray[i] to the created Country object
